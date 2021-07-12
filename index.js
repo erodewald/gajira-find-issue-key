@@ -11,6 +11,7 @@ const Action = require('./action')
 core.debug('Requiring Github Event Path')
 const githubEvent = process.env.GITHUB_EVENT_PATH ? require(process.env.GITHUB_EVENT_PATH) : []
 const config = YAML.parse(fs.readFileSync(configPath, 'utf8'))
+core.debug(config)
 
 async function writeKey(result) {
   if (!result) {

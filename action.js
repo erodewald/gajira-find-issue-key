@@ -74,7 +74,9 @@ module.exports = class {
       this.jiraTransition = argv.transitionOnNewBranch
     }
 
-    this.github = new github.GitHub(argv.githubToken) || null
+    core.debug(`Creating OktoKit.js with ${process.env.GITHUB_API_URL}`)
+    this.github =
+      new github.GitHub(argv.githubToken, { baseUrl: process.env.GITHUB_API_URL }) || null
 
     if (Object.prototype.hasOwnProperty.call(githubEvent, 'pull_request')) {
       this.headRef = githubEvent.pull_request.head.ref || null
