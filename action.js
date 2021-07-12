@@ -33,7 +33,6 @@ async function getPreviousReleaseRef(octo) {
 function upperCaseFirst(str) {
   return str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1))
 }
-
 module.exports = class {
   constructor({ githubEvent, argv, config }) {
     this.Jira = new Jira({
@@ -503,7 +502,9 @@ module.exports = class {
       if (issue) {
         core.debug(`Jira issue: ${JSON.stringify(issue)}`)
 
-        return new Map(['key', issue.key])
+        const issueMap = new Map()
+        issueMap.set('key', issue.key)
+        return issueMap
       }
     }
   }
