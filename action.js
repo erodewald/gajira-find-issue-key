@@ -304,7 +304,7 @@ module.exports = class {
     }
     const fullArray = []
 
-    const { title } = this.githubEvent.pull_request || context.payload.pull_request
+    const { title } = this.githubEvent.pull_request || context.payload.pull_request || {}
 
     if (title) {
       match = title.match(issueIdRegEx)
