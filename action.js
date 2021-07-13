@@ -185,10 +185,10 @@ module.exports = class {
       const issueKeys = this.foundKeys.map((a) => a.get('key'))
 
       if (Array.isArray(issueKeys)) {
+        core.debug(`Current PR Issue Keys: ${issueKeys}`)
         try {
-          const re = /(?:\[)?(?<issues>(?:(?:[\w]{2,8})(?:[-_ ])(?:[\d]{3,5})(?:[, ]+)?)+)(?:[-:_ \]]+)(?<title>.*)?/
-
-          const { groups } = newTitle.match(re)
+          const issueRegExp = /(?:\[)?(?<issues>(?:(?:[\w]{2,8})(?:[-_ ])(?:[\d]{3,5})(?:[, ]+)?)+)(?:[-:_ \]]+)(?<title>.*)?/
+          const { groups } = newTitle.match(issueRegExp) || {}
 
           core.debug(`The title match found: ${YAML.stringify(groups)}`)
 
